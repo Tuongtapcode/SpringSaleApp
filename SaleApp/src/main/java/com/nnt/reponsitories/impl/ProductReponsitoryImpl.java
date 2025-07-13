@@ -71,30 +71,26 @@ public class ProductReponsitoryImpl implements ProductReponsitory {
 
     }
 
-//
-//    public Product getProductById(int id) {
-//        try (Session s = HibernateConfigs.getFACTORY().openSession()) {
-//            return s.get(Product.class, id);
-//        }
-//    }
-//
-//    public void addOrUpdateProduct(Product p) {
-//        try (Session s = HibernateConfigs.getFACTORY().openSession()) {
-//            if (p.getId() == null) {
-//                s.persist(p);
-//            } else {
-//                s.merge(p);
-//            }
-//        }
-//    }
-//
-//    // Vấn đáp thầy hay hỏi ********
-//    public void deleteProduct(int id) {
-//        try (Session s = HibernateConfigs.getFACTORY().openSession()) {
-//            Product p = this.getProductById(id);
-//
-//            s.remove(p);
-//
-//        }
-//    }
+    public Product getProductById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        return s.get(Product.class, id);
+    }
+
+    // Vấn đáp thầy hay hỏi ********
+    public void deleteProduct(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Product p = this.getProductById(id);
+        s.remove(p);
+    }
+
+    @Override
+    public void addOrUppdateProduct(Product p) {
+        Session s = this.factory.getObject().getCurrentSession();
+        if (p.getId() == null) {
+            s.persist(p);
+        } else {
+            s.merge(p);
+        }
+    }
+
 }

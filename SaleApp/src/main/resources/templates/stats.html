@@ -1,0 +1,75 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Quản lý sản phẩm</title>
+    <th:context th:replace="base :: resources">
+
+    </th:context>
+</head>
+
+<body>
+    <div th:replace="base :: header"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 col-6">
+                <table class="table">
+                    <tr>
+                        <th>Id</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Doanh thu</th>
+                    </tr>
+                    <tr th:each="s: ${productRevenues}">
+                        <td th:text="${s[0]}"></td>
+                        <td th:text="${s[1]}"></td>
+                        <td th:text="${s[2] + ' VNĐ'}"></td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="col-md-5 col-6">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+<div th:replace="base :: footer">
+
+</div>
+<script th:src="@{/js/main.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    window.onload = function () {
+
+        let labels = [];
+        let data = [];
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    };
+
+</script>
+
+
+</html>

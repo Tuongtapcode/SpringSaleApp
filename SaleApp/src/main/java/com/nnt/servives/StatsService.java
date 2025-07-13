@@ -4,22 +4,15 @@
  */
 package com.nnt.servives;
 
-import com.nnt.pojo.Product;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
  * @author ngoct
  */
-public interface ProductService {
+public interface StatsService {
 
-    List<Product> getProducts(Map<String, String> params);
+    List<Object[]> statsRevenueByProduct();
 
-    void addOrUppdateProduct(Product p);
-
-    Product getProductById(int id);
-
-    void deleteProduct(int id);
-
+    List<Object[]> statsRevenueByTime(String time, int year);
 }

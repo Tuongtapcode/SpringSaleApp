@@ -21,14 +21,15 @@ public class ThymeleafConfigs {
     @Bean
     public ClassLoaderTemplateResolver templateResolver() {
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setPrefix("templates/");
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode("HTML");
-        templateResolver.setCharacterEncoding("UTF-8");
+        templateResolver.setPrefix("templates/");  // Thư mục chứa HTML (trong resources)
+        templateResolver.setSuffix(".html");// Đuôi file
+        templateResolver.setTemplateMode("HTML");// Loại nội dung
+        templateResolver.setCharacterEncoding("UTF-8");// Dạng Mã hóa
         return templateResolver;
     }
 
     @Bean
+    //Gắn cái "resolver" ở trên vào "engine" để nó biết lấy file nào và xử lý ra sao.
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());

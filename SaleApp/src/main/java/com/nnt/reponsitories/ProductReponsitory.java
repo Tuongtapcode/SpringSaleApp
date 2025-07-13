@@ -14,6 +14,12 @@ import java.util.Map;
  */
 public interface ProductReponsitory {
 
-    public List<Product> getProducts(Map<String, String> params);
+    List<Product> getProducts(Map<String, String> params);
+
+    Product getProductById(int id);
+
+    void addOrUppdateProduct(Product p);
+
+    void deleteProduct(int id);
 
 }
